@@ -1,0 +1,16 @@
+.custom-dropdown::after {
+    display: none;
+}
+
+.custom-dropdown {
+    padding-right: 50px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    will-change: transform;
+    top: 100%;
+    right: 0;
+    transform: translate3d(0px, 0px, 0px);
+    padding-right: 50px; 
+}

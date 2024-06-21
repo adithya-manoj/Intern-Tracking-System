@@ -1,0 +1,44 @@
+.admin-layout {
+    display: flex;
+    margin-top: 60px; 
+}
+
+.right-navigation {
+    width: 150px;
+    transition: transform 0.5s ease;
+    height: 100vh;
+    
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.collapsed .right-navigation {
+    transform: translateX(-100%);
+    position: absolute;
+    
+}
+
+@media (max-width: 768px) {
+    .right-navigation {
+        position: fixed;
+        top: 180px; /* Adjust based on navbar height */
+        left: 0;
+        height: calc(100% - 180px);
+        background-color: #343a40; 
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .collapsed .right-navigation {
+        transform: translateX(-100%);
+    }
+
+    .main-content {
+        margin-left: 0;
+
+        
+    }
+}
