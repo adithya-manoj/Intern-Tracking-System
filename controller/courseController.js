@@ -29,3 +29,15 @@ export const viewCourse = async (req,res) =>{
         res.status(500).json({ message: e.message }); 
     }
 }
+
+export const deleteCourse = async(req,res)=>{
+    try{
+        let {name}=req.body;
+        const deletedCourse = await Course.findOneAndDelete({ name: name });
+        res.status(200).json({ message: 'Course deleted successfully' });
+    }
+    catch (error) {
+        console.error('Error deleting course:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+    }

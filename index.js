@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url';
 import trainerRoutes from './routes/trainerRoutes.js';
 import internRoutes from './routes/internRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,6 +28,7 @@ app.use('/trainers', trainerRoutes);
 app.use('/interns', internRoutes);
 app.use('/course',courseRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
+app.use('/authentication',authRoutes);
 
 
 

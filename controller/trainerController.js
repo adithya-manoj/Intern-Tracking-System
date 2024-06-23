@@ -1,4 +1,5 @@
 import Trainer from '../model/Trainer.js';
+import User from '../model/user.js';
 import bcrypt from 'bcrypt';
 
 export const registerTrainer = async (req, res) => {
@@ -7,35 +8,17 @@ export const registerTrainer = async (req, res) => {
         req.body = { ...req.body, password: hashedPassword };
         console.log(req.body);
         let newdata = new Trainer(req.body);
-
-
         let response = await newdata.save();
+        
+        let userData = new User(req.body);
+        let responselogin=await userData.save();
+
         res.json(response);
     } catch (e) {
         res.status(500).json({ message: e.message });
     }
 };
 
-export const LoginTrainer = async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        let response = await Trainer.findOne({ username: username })
-
-        if (!response) {
-            return res.status(500).json('User not Found!!')
-        }
-        let matchPassword = await bcrypt.compare(password, response.password)
-
-        if (!matchPassword) {
-            return res.status(500).json('Incorrect Password!!')
-        }
-
-        res.json(response)
-    }
-    catch (e) {
-        res.status(500).json({ message: e.message });
-    }
-}
 
 export const ViewTrainer = async (req, res) => {
     try {
