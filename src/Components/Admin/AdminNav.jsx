@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import AdminNavbar from './AdminNavbar'
 import RightNavigation from './RightNavigation'
 import './AdminNav.css'
+import axios from 'axios'
 
 const AdminNav = () => {
 
@@ -11,6 +12,15 @@ const AdminNav = () => {
     const ToggleSide = () => {
         setIsCollapsed(!isCollapsed)
     }
+
+    useEffect(()=>{
+
+        const token = localStorage.getItem('token');
+
+        let fetchData=async()=>{
+            let response = await axios.get('http://localhost:4000/',{headers:{Authorization:token}})
+        }
+    })
 
     return (
         <div>

@@ -4,6 +4,7 @@ import App from './Components/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import TrainerRegister from './Components/Trainer/TrainerRegister';
+import TrainerNav from './Components/Trainer/TrainerNav';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InternRegister from './Components/Intern/InternRegister';
 import Login from './Components/Login';
@@ -36,6 +37,11 @@ root.render(
           <Route path='AdminCourse' element={<AdminCourse/>}/>
     </Route>
 
+    <Route path='/trainer' element={<TrainerNav/>}>
+          <Route index element={<InternHome/>}/>
+          <Route path='AssignedTasks' element={<InternAssigned/>}/>
+          <Route path='CompletedTasks' element={<InternCompleted/>}/>
+    </Route>
     <Route path='/intern' element={<InternNav/>}>
           <Route index element={<InternHome/>}/>
           <Route path='AssignedTasks' element={<InternAssigned/>}/>

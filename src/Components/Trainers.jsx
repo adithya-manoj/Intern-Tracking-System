@@ -28,7 +28,7 @@ fetchData();
 <div className='m-3 d-flex gap-2'>
   {trainers.map((item)=>(
 
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '12rem' }}>
       <Card.Img variant="top" src="holder.js/100px180" />
     
       <Card.Body>

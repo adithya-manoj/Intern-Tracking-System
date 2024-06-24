@@ -1,0 +1,18 @@
+.techcard{
+    border-radius: 5%;
+    border: 3px;
+
+}
+
+.cardcontainer{
+    display: flex;
+    padding: 4rem;
+}
+
+.icon{
+    font-size: 3rem;
+}
+
+.headcontainer{
+    padding: 4rem;
+}

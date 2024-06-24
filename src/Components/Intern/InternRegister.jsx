@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Trainer_dp from '../../images/trainer_dp.jpg';
 
 const InternRegister = () => {
+    const [courses, setCourses] = useState([]);
     const [data, setData] = useState({
         name: '',
         date: '',
@@ -14,6 +15,19 @@ const InternRegister = () => {
         usertype: 'intern'
     });
 
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/course/viewCourse');
+                setCourses(response.data);
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        };
+        fetchCourses();
+    }, []);
+
+
     const handleChange = (event) => {
         setData({ ...data, [event.target.name]: event.target.value });
     };
@@ -22,6 +36,15 @@ const InternRegister = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:4000/interns/register', data);
+            setData({
+                name: '',
+                date: '',
+                course: '',
+                username: '',
+                password: '',
+                usertype: 'intern',
+                status: 'pending'
+            });
             toast.success('Registered Successfully!!');
         } catch (error) {
             console.error('There was an error!', error);
@@ -72,14 +95,19 @@ const InternRegister = () => {
                                     />
                                 </div>
                                 <div className='mb-3'>
-                                    <input
-                                        type="text"
-                                        placeholder='Course'
+                                    <select
                                         name='course'
                                         className='form-control rounded-pill'
                                         onChange={handleChange}
                                         value={data.course}
-                                    />
+                                    >
+                                        <option value=''>Select Course</option>
+                                        {courses.map((course, index) => (
+                                            <option key={index} value={course.name}>
+                                                {course.name}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                                 <div className='mb-3'>
                                     <input
@@ -101,7 +129,7 @@ const InternRegister = () => {
                                         value={data.password}
                                     />
                                 </div>
-                               
+
                                 <div className='mb-3'>
                                     <button type="submit" className='btn btn-dark text-white w-100 rounded-pill'>
                                         REGISTER

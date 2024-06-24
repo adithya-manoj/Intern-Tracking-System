@@ -6,6 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import './Navigationbar.css'; 
+import brandlogo from '../images/brandlogo.png'
 
 
 const Navigationbar = () => {
@@ -20,9 +21,9 @@ const Navigationbar = () => {
     };
 
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="light" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">ITS</Navbar.Brand>
+                <Navbar.Brand href=""><img src={brandlogo} alt="" style={{ width: '5rem', height: '3rem' }}/></Navbar.Brand>
                 <Nav className="ms-auto">
                     <Dropdown onSelect={handleSelect}>
                         <Dropdown.Toggle variant="dark" id="dropdown-custom-components" className="custom-dropdown">

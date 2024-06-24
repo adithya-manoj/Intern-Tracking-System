@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import TrainerSiderbar from './TrainerSiderbar';
 import TrainerNavigation from './TrainerNavigation';
+import axios from 'axios';
 
 const TrainerNav = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
+     let navigate = useNavigate();
+
+    useEffect(()=>{
+        
+        const token = localStorage.getItem('token');
+        
+        let fetchData=async()=>{
+        try{
+            await axios.get('http://localhost:4000/authentication/authorize',{headers:{Authorization:token}})
+        }
+        catch(error){
+            navigate('/login')
+        }
+        
+    }
+    fetchData();
+    })
+
 
     const ToggleSide = () => {
         setIsCollapsed(!isCollapsed)

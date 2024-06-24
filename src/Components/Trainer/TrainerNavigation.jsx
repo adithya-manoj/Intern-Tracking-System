@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const TrainerNavigation = () => {
+const TrainerNavigation = ({Toggle}) => {
   return (
     <Navbar bg="dark" variant="dark" className="w-100">
     <Container>
@@ -16,6 +16,7 @@ const TrainerNavigation = () => {
         <Nav className="ms-auto">
 
             <Nav.Link >Welcome Trainer</Nav.Link>
+            <Nav.Link ></Nav.Link>
         </Nav>
     </Container>
 </Navbar>
