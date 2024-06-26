@@ -1,10 +1,18 @@
-const verifyToken = (req,res,next) => {
-  try{
+import jwt from 'jsonwebtoken'
 
-  }
-  catch(e){
+const verifyToken = (req,res,next) => {
+  // try{
     
-  }
+    let token=req.headers.authorization
+    let decode=jwt.verify(token,'abc')
+    console.log(decode,'tokens');
+    console.log('adhi');
+    next()
+  // }
+  // catch(e){
+  //   console.log(e);
+    
+  // }
 }
 
-export default verifyToken
+export default verifyToken;

@@ -52,3 +52,28 @@ export const countInterns = async(req,res)=>{
     }
 }
 
+export const statusIntern = async(req,res)=>{
+    let {id,status}=req.body;
+    try{
+        let response = await Intern.updateOne({ _id: id },{ $set: { status: status } });    
+    }
+    catch(e){
+        res.status(500).json({message:e.message})
+    }
+}
+
+export const updateInterns = async(req,res)=>{
+
+const updates=req.body;
+try{
+for(const intern of updates){
+    await Intern.findByIdAndUpdate(intern._id,{trainer:intern.trainer,fees:intern.fees});
+}
+res.status(200).json({message:'Trainers assigned Successfully'})
+}
+catch(e){
+    console.log(e.message);
+}
+console.log();
+   
+}

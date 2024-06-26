@@ -27,6 +27,27 @@ export const ViewTrainer = async (req, res) => {
         res.json(response)
     }
     catch (e) {
+        res.status(500).json({ message: e.message });
+    }
+}
 
+export const deleteTrainer = async(req,res)=>{
+    try{
+        let {id} = req.body;
+        await Trainer.findOneAndDelete({ _id: id });
+        res.status(200).json({ message: 'Trainer removed successfully' });
+    }
+    catch (e) {
+        res.status(500).json({ message: e.message });
+    }
+}
+
+export const statusTrainer = async(req,res)=>{
+    let {id,status}=req.body;
+    try{
+        let response = await Trainer.updateOne({ _id: id },{ $set: { status: status } });   
+    }
+    catch(e){
+        res.status(500).json({ message: e.message });
     }
 }

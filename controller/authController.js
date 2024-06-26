@@ -2,7 +2,7 @@ import User from "../model/user.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export const authentication = async (req, res) => {
+export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
         let response = await User.findOne({ username: username })
@@ -14,6 +14,7 @@ export const authentication = async (req, res) => {
         if (!matchPassword) {
             return res.status(500).json('Incorrect Password!!')
         }
+
         let token = jwt.sign({ id: response._id, username: response.username }, 'abc')
         console.log(token);
         res.json({ response, token })
@@ -21,4 +22,8 @@ export const authentication = async (req, res) => {
     catch (e) {
         res.status(500).json({ message: e.message });
     }
+}
+
+export const authorize =async (req,res)=>{
+
 }
