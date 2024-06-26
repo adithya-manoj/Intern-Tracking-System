@@ -23,8 +23,11 @@ const Login = () => {
                 username: data.username,
                 password: data.password,
             });
+            console.log(response);
+            
             toast.success('Logged in Successfully!!');
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('id', response.data.response._id);
             let user=response.data.response.usertype;
             
 

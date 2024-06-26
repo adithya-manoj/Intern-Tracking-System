@@ -20,6 +20,7 @@ const InternRegister = () => {
             try {
                 const response = await axios.get('http://localhost:4000/course/viewCourse');
                 setCourses(response.data);
+                
             } catch (error) {
                 console.error('Error fetching courses:', error);
             }
@@ -43,7 +44,8 @@ const InternRegister = () => {
                 username: '',
                 password: '',
                 usertype: 'intern',
-                status: 'pending'
+                status: false,
+                fees:'0'
             });
             toast.success('Registered Successfully!!');
         } catch (error) {
@@ -104,7 +106,7 @@ const InternRegister = () => {
                                         <option value=''>Select Course</option>
                                         {courses.map((course, index) => (
                                             <option key={index} value={course.name}>
-                                                {course.name}
+                                                {course.course.name}
                                             </option>
                                         ))}
                                     </select>

@@ -20,6 +20,7 @@ const AdminCourse = () => {
             try {
                 const response = await axios.get('http://localhost:4000/course/viewCourse');
                 setCourses(response.data);
+                console.log(response.data);
 
             }
             catch (error) {
@@ -42,7 +43,7 @@ const AdminCourse = () => {
             }
         }
         fetchData();
-        fetchCountIntern();
+        // fetchCountIntern();
     }, [])
 
 
@@ -171,7 +172,10 @@ const AdminCourse = () => {
                                 <td>{item.course.name}</td>
                                 <td>{item.course.syllabus}</td>
                                 <td>{item.intern.length}</td>
-                                <td>Adhi</td>
+                                <td>{item?.trainer.map((tr)=>(
+
+                                    <span>{tr.name}</span>
+                                ))}</td>
                                 <td>Edit</td>
                                 <td className='text-center' onClick={() => deleteCourse(item.name)}><MdDelete /></td>
                             </tr>

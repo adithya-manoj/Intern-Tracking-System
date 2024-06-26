@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import AdminNavbar from './AdminNavbar'
 import RightNavigation from './RightNavigation'
 import './AdminNav.css'
-import axios from 'axios'
+import axios from 'axios';
+
 
 const AdminNav = () => {
 
@@ -13,13 +14,24 @@ const AdminNav = () => {
         setIsCollapsed(!isCollapsed)
     }
 
+    let navigate = useNavigate();
+
     useEffect(()=>{
-
+        
         const token = localStorage.getItem('token');
-
-        let fetchData=async()=>{
-            let response = await axios.get('http://localhost:4000/',{headers:{Authorization:token}})
+        if(!token){
+            navigate('/login')
         }
+        let fetchData=async()=>{
+        try{
+            await axios.get('http://localhost:4000/authentication/authorize',{headers:{Authorization:token}})
+        }
+        catch(error){
+            navigate('/login')
+        }
+        
+    }
+    fetchData();
     })
 
     return (

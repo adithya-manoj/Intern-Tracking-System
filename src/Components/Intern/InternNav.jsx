@@ -1,16 +1,36 @@
-import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom';
 import InternSidebar from './InternSidebar';
 import InternNavigation from './InternNavigation';
+import axios from 'axios';
 
 
 const InternNav = () => {
 
     const [isCollapsed, setIsCollapsed] = useState(true);
-
+    
     const ToggleSide = () => {
         setIsCollapsed(!isCollapsed)
     }
+    let navigate = useNavigate();
+
+    useEffect(()=>{
+        
+        const token = localStorage.getItem('token');
+        if(!token){
+            navigate('/login')
+        }
+        let fetchData=async()=>{
+        try{
+            await axios.get('http://localhost:4000/authentication/authorize',{headers:{Authorization:token}})
+        }
+        catch(error){
+            navigate('/login')
+        }
+        
+    }
+    fetchData();
+    })
 
     return (
         <div>

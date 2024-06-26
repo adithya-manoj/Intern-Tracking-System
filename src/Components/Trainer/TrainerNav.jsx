@@ -11,7 +11,9 @@ const TrainerNav = () => {
     useEffect(()=>{
         
         const token = localStorage.getItem('token');
-        
+        if(!token){
+            navigate('/login')
+        }
         let fetchData=async()=>{
         try{
             await axios.get('http://localhost:4000/authentication/authorize',{headers:{Authorization:token}})

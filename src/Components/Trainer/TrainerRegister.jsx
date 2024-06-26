@@ -13,8 +13,9 @@ const TrainerRegister = () => {
         username: '',
         password: '',
         usertype: 'trainer',
-        status: 'pending'
+        status: false
     });
+
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
@@ -119,7 +120,7 @@ const TrainerRegister = () => {
                                             <option value=''>Select Course</option>
                                             {courses.map((course, index) => (
                                                 <option key={index} value={course.name}>
-                                                    {course.name}
+                                                    {course.course.name}
                                                 </option>
                                             ))}
                                         </select>
