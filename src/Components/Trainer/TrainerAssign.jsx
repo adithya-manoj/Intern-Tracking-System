@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import FileBase64 from 'react-file-base64';
 import './TrainerAssign.css'
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const TrainerAssign = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +11,8 @@ const TrainerAssign = () => {
     file: null,
     link: ''
   });
-
+const location =useLocation()
+const {myInterns}=location.state || {}
   const fileInputRef = useRef();
 
   const handleInputChange = (e) => {
@@ -27,22 +30,12 @@ const TrainerAssign = () => {
     }));
   };
 
+
   const handleSubmit = async () => {
+    console.log(myInterns);
+    console.log(formData);
     try {
-      const response = await fetch('/api/assign', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const result = await response.json();
-      console.log(result);
+     let response= await axios.post('http://localhost:4000/interns/assignTask',{formData,myInterns})
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
     }

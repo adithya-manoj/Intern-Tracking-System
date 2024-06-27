@@ -26,8 +26,11 @@ const AdminNavbar = ({ Toggle }) => {
 
                         <Dropdown.Menu>
                             <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                            <Dropdown.Item href="/login"><div onClick={() => {localStorage.removeItem('token');localStorage.removeItem('id');
-                            }}>Logout</div></Dropdown.Item>
+                            <Dropdown.Item href="/login"><div
+                                onClick={() => {
+                                    localStorage.removeItem('token');
+                                    localStorage.removeItem('id');
+                                }}>Logout</div></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Nav>

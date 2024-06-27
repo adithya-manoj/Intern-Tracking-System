@@ -3,7 +3,8 @@ import Footer from "./Footer";
 import { LoginButton } from "./LoginButton";
 import Navigationbar from "./Navigationbar";
 import Techlab from "./Techlab";
-import Trainers from "./Trainers";
+
+import Join from "./Join";
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
     <Navigationbar/>
     <LoginButton/>
     <Course/>
-    <Trainers/>
+   
     <Techlab/>
+    <Join/>
     <Footer/>
     </>
   );

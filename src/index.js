@@ -43,7 +43,7 @@ root.render(
     <Route path='/trainer' element={<TrainerNav/>}>
           <Route index element={<InternHome/>}/>
           <Route path='TrainerInterns' element={<TrainerIntern/>}/>
-          <Route path='TrainerInterns/AssignTask' element={<TrainerAssign/>}/>
+          <Route path='AssignTask' element={<TrainerAssign/>}/>
           <Route path='TrainerTasks' element={<TrainerTasks/>}/>
 
     </Route>

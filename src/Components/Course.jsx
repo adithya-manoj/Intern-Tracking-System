@@ -32,13 +32,13 @@ const Course = () => {
   const chunkedCourses = chunkArray(courses, 4);
 
   return (
-    <div className='bg-dark text-white p-2'>
-      <h2 className='text-center'>Our Courses</h2>
+    <div className='bg-black text-white p-4'>
+      <h2 className='text-center p-4'>Our Courses</h2>
       <Carousel indicators={false} controls={true} interval={3000}>
 
         {chunkedCourses.map((courseChunk, index) => (
           <Carousel.Item key={index}>
-            <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center py-3'>
               {courseChunk.map((item) => (
                 <Card key={item._id} style={{ width: '18rem', height: '16rem', margin: '0 10px' }}>
                   <Card.Img 
