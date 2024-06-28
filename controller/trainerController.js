@@ -5,12 +5,13 @@ import bcrypt from 'bcrypt';
 export const registerTrainer = async (req, res) => {
     try {
         let hashedPassword = await bcrypt.hash(req.body.password, 10);
+
         req.body = { ...req.body, password: hashedPassword };
         console.log(req.body);
         let newdata = new Trainer(req.body);
         let response = await newdata.save();
         
-        let userData = new User(req.body);
+        let userData = new User({...req.body,userId:response._id});
         let responselogin=await userData.save();
 
         res.json(response);
@@ -51,3 +52,4 @@ export const statusTrainer = async(req,res)=>{
         res.status(500).json({ message: e.message });
     }
 }
+
