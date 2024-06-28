@@ -57,7 +57,7 @@ const {myInterns}=location.state || {}
         </div>
         <div>
           <input
-            type="text"
+            type="date"
             name="deadline"
             placeholder='Deadline'
             value={formData.deadline}

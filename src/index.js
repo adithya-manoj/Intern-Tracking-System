@@ -20,6 +20,7 @@ import InternCompleted from './Components/Intern/InternCompleted';
 import TrainerIntern from './Components/Trainer/TrainerIntern';
 import TrainerAssign from './Components/Trainer/TrainerAssign';
 import TrainerTasks from './Components/Trainer/TrainerTasks';
+import TrainerAnsInterns from './Components/Trainer/TrainerAnsInterns';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -45,6 +46,7 @@ root.render(
           <Route path='TrainerInterns' element={<TrainerIntern/>}/>
           <Route path='AssignTask' element={<TrainerAssign/>}/>
           <Route path='TrainerTasks' element={<TrainerTasks/>}/>
+          <Route path='TrainerAnsInterns' element={<TrainerAnsInterns/>}/>
 
     </Route>
     <Route path='/intern' element={<InternNav/>}>

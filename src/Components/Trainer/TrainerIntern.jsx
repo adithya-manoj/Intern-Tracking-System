@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 const TrainerIntern = () => {
     const [interns, setInterns] = useState([]);
@@ -9,10 +9,10 @@ const TrainerIntern = () => {
 
     useEffect(() => {
         const userId = localStorage.getItem('userId')
+        console.log(userId);
         const fetchInterns = async () => {
             try {
                 const response = await axios.get(`http://localhost:4000/interns/viewAssignedIntern/${userId}`);
-                // const Interns = response.data;
                 setInterns(response.data);
                 console.log(response.data);
 
@@ -36,6 +36,7 @@ const TrainerIntern = () => {
     let handleSubmit=()=>{
         navigate('/trainer/AssignTask', {state:{myInterns}})
     }
+    
 
     return (
         <div>
