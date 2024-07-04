@@ -17,10 +17,7 @@ const {myInterns}=location.state || {}
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData(prevState => ({...prevState,[name]: value}));
   };
 
   const handleFileDone = (file) => {

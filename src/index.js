@@ -21,6 +21,7 @@ import TrainerIntern from './Components/Trainer/TrainerIntern';
 import TrainerAssign from './Components/Trainer/TrainerAssign';
 import TrainerTasks from './Components/Trainer/TrainerTasks';
 import TrainerAnsInterns from './Components/Trainer/TrainerAnsInterns';
+import InternQuestion from './Components/Intern/InternQuestion';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -53,6 +54,8 @@ root.render(
           <Route index element={<InternHome/>}/>
           <Route path='AssignedTasks' element={<InternAssigned/>}/>
           <Route path='CompletedTasks' element={<InternCompleted/>}/>
+          <Route path='CompletedTasks' element={<InternCompleted/>}/>
+          <Route path='InternQuestion' element={<InternQuestion/>}/>
     </Route>
 
 
