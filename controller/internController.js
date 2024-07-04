@@ -9,10 +9,10 @@ export const registerIntern = async (req, res) => {
         let hashedPassword = await bcrypt.hash(req.body.password, 10);
         req.body = { ...req.body, password: hashedPassword }
         let newdata = new Intern(req.body)
-        let loginuser = new User(req.body)
-
         let response = await newdata.save();
-        let responselogin = await loginuser.save();
+        
+        let userData = new User({...req.body,userId:response._id});
+        await userData.save();
         res.json(response);
     }
     catch (e) {
@@ -124,6 +124,20 @@ export const ViewTask = async (req, res) => {
     
     try {
         let response = await Task.find()
+        
+        res.json(response)
+    }
+    catch (e) {
+        console.log(e.message);
+    }
+
+}
+export const ViewTaskbyQuestion = async (req, res) => {
+    let {question} = req.params;
+    console.log(question);
+    
+    try {
+        let response = await Task.find({question:question})
         console.log(response);
         res.json(response)
     }
@@ -132,3 +146,61 @@ export const ViewTask = async (req, res) => {
     }
 
 }
+
+export const ViewTaskbyUser = async (req, res) => {
+    let user = req.params.user;
+    
+    try {
+        let response = await Task.find({intern:user})
+        console.log(response);
+        res.json(response)
+    }
+    catch (e) {
+        console.log(e.message);
+    }
+
+}
+
+export const updateAnswer = async (req, res) => {
+    const { answer, questionId } = req.body;
+    
+    try {
+        
+       
+        let updatedTask = await Task.findOneAndUpdate(
+            { _id: questionId },
+            { $set: { answer: answer } },
+            { new: true }
+        );
+
+        if (!updatedTask) {
+            return res.status(404).json({ error: 'Question not found' });
+        }
+
+        let updatedStatus = await Task.findOneAndUpdate(
+            { _id: questionId },
+            { $set: { status: true } },
+            { new: true }
+        );
+
+        console.log('Answer updated successfully:', updatedTask);
+        res.json(updatedTask);
+    } catch (error) {
+        console.error('Error updating answer:', error.message);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+// export const updateStatus = async(req,res)=>{
+//     const {questionId } = req.body;
+//     try {
+//         let updatedStatus = await Task.findOneAndUpdate(
+//             { _id: questionId },
+//             { $set: { status: true } },
+//             { new: true }
+//         );
+        
+//     } catch (error) {
+//         console.error('Error updating Status:', error.message);
+//     }
+// }

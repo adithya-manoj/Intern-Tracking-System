@@ -1,5 +1,5 @@
 import express from 'express';
-import { assignTask, countInterns, deleteIntern, registerIntern, statusIntern, updateInterns, viewAssignedIntern, viewIntern, ViewTask } from '../controller/internController.js';
+import { assignTask, countInterns, deleteIntern, registerIntern, statusIntern, updateAnswer, updateInterns, viewAssignedIntern, viewIntern, ViewTask, ViewTaskbyQuestion, ViewTaskbyUser } from '../controller/internController.js';
 
 
 const router = express.Router();
@@ -12,7 +12,11 @@ router.patch('/statusIntern',statusIntern)
 router.put('/updateInterns',updateInterns)
 router.get('/viewAssignedIntern/:id',viewAssignedIntern)
 router.post('/assignTask',assignTask)
-router.get('/ViewTask',ViewTask)
+router.get('/ViewTask',ViewTask) 
+router.get('/ViewTaskbyQuestion/:question', ViewTaskbyQuestion);
+router.get('/ViewTaskbyUser/:user',ViewTaskbyUser) 
+router.post('/updateAnswer',updateAnswer)
+// router.put('/updateStatus',updateAnswer)
 
 
 export default router;

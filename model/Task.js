@@ -28,6 +28,10 @@ const taskSchema = new mongoose.Schema({
     },
     marks: {
         type: String
+    },
+    status:{
+        type: Boolean,
+        default:false
     }
 
 }

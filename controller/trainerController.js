@@ -12,7 +12,7 @@ export const registerTrainer = async (req, res) => {
         let response = await newdata.save();
         
         let userData = new User({...req.body,userId:response._id});
-        let responselogin=await userData.save();
+        await userData.save();
 
         res.json(response);
     } catch (e) {
